@@ -2,36 +2,10 @@
 
 # Graylog2 upgrade script
 
-set -e
-# Setup logging
-# Logs stderr and stdout to separate files.
-exec 2> >(tee "./graylog2/upgrade_graylog2.err")
-exec > >(tee "./graylog2/upgrade_graylog2.log")
-
-# Setup Pause function
-function pause(){
-   read -p "$*"
-}
-
-echo "Detecting IP Address"
-IPADDY="$(ifconfig | grep -A 1 'eth0' | tail -1 | cut -d ':' -f 2 | cut -d ' ' -f 1)"
-echo "Detected IP Address is $IPADDY"
-
-SERVERNAME=$IPADDY
-SERVERALIAS=$IPADDY
-
 # Stop Graylog2 Services
 service graylog2-server stop
 service graylog2-web-interface stop
 
-# Remove graylog2 symlinks
-rm /opt/graylog2-server
-rm /opt/graylog2-web-interface
-
-# Remove previous graylog2 server and web-interface
-rm -rf /opt/graylog2-server*
-cp /etc/graylog2.conf /etc/graylog2.conf.orig
-rm -rf /opt/graylog2-web-interface*
 
 # Download Graylog2-Server and Graylog2-Web-Interface
 echo "Downloading Graylog2-Server and Graylog2-Web-Interface to /opt"
