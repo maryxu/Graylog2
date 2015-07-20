@@ -1,6 +1,4 @@
 #!/bin/bash
-#Provided by @mrlesmithjr
-#EveryThingShouldBeVirtual.com
 
 # Graylog2 upgrade script
 
@@ -38,8 +36,8 @@ rm -rf /opt/graylog2-web-interface*
 # Download Graylog2-Server and Graylog2-Web-Interface
 echo "Downloading Graylog2-Server and Graylog2-Web-Interface to /opt"
 cd /opt
-https://github.com/Graylog2/graylog2-server/releases/tag/1.1.4/graylog2-server-1.1.4.tar.gz
-https://github.com/Graylog2/graylog2-web-interface/releases/tag/1.1.4/graylog2-web-interface-1.1.4.tar.gz
+wget https://github.com/Graylog2/graylog2-server/archive/1.1.4.tar.gz
+wget https://github.com/Graylog2/graylog2-web-interface/archive/1.1.4.tar.gz
 
 # Extract files
 echo "Extracting Graylog2-Server and Graylog2-Web-Interface to /opt"
